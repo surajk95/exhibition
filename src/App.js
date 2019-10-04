@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import ImageFullscreen from './components/image-fullscreen';
+
+class App extends React.Component {
+  state = {
+    fullscreen: false,
+  }
+
+  toggleFullscreen = () => {
+    this.setState({ fullscreen: false });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <ImageFullscreen />
+      </div>
+    );
+  }
 }
 
 export default App;
