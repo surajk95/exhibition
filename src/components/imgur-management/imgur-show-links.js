@@ -8,10 +8,25 @@ class ImgurShowLinks extends React.Component {
             <div>
                 {
                     (links && links.length>0) &&
-                    links.map((link, index) => {
+                    links.map(link => {
                         return (
-                            <div key={index}>
-                                {link}
+                            <div key={link.id}>
+                                {link.title}
+                                <button onClick={()=>this.props.deleteLink(link.id)}>
+                                    Delete
+                                </button>
+                                {
+                                    (link.id !== 0) &&
+                                    <button onClick={()=>this.props.changeOrder(link.id, 'up')}>
+                                        Up
+                                    </button>
+                                }
+                                {
+                                    (link.id !== links.length-1) &&
+                                    <button onClick={()=>this.props.changeOrder(link.id, 'down')}>
+                                        Down
+                                    </button>
+                                }
                             </div>
                         )
                     })
