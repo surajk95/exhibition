@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import ImgurAddLink from './imgur-add-link.js';
 import ImgurShowLinks from './imgur-show-links.js';
+
+import { updateState } from './imgur-actions.js';
 
 class ImgurHome extends React.Component {
     state = {
@@ -56,4 +59,16 @@ class ImgurHome extends React.Component {
     }
 }
 
-export default ImgurHome;
+const mapStateToProps = (state) => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateState : (data) => updateState(data),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImgurHome);
