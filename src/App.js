@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 
 import ImageFullscreen from './components/image-fullscreen';
+import ImgurHome from './components/imgur-management/imgur-home';
 
 class App extends React.Component {
   state = {
@@ -15,7 +16,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <ImageFullscreen />
+        <ImgurHome />
+        {/* <ImageFullscreen /> */}
       </div>
     );
   }
