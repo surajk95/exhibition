@@ -29,7 +29,7 @@ class ImgurHome extends React.Component {
         links = links.map(item => ({...item, id: item.id+1}));
         links.unshift(link);
         //this.setState({ links });
-        this.props.updateState(links);
+        this.props.updateState(links, this.props.user.uid);
     }
 
     deleteLink = (id) => {
@@ -37,7 +37,7 @@ class ImgurHome extends React.Component {
         links = links.filter(item => item.id !== id)
                 .map(item => item.id>id ? {...item, id:item.id-1} : item);
         //this.setState({ links });
-        this.props.updateState(links);
+        this.props.updateState(links, this.props.user.uid);
     }
 
     changeOrder = (id, direction) => {
@@ -50,13 +50,14 @@ class ImgurHome extends React.Component {
                 swapper.title = links[i].title;
                 links[i].title = temp;
                 //this.setState({ links });
-                this.props.updateState(links);
+                this.props.updateState(links, this.props.user.uid);
                 return;
             }
         }
     }
 
     render() {
+        //console.log(this.props.user);
         return (
             <div>
                 <ImgurAddLink addNewLink={this.addNewLink} />
@@ -83,7 +84,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateState : (data) => dispatch(updateState(data)),
+        updateState : (data, uid) => dispatch(updateState(data, uid)),
         fetchState: () => dispatch(fetchState()),
     }
 }

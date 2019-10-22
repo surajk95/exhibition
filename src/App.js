@@ -1,5 +1,8 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import './App.scss';
+import { fetchState } from './components/imgur-management/imgur-actions.js';
 
 import ImageFullscreen from './components/image-fullscreen';
 import Toolbar from './components/toolbar';
@@ -9,6 +12,14 @@ class App extends React.Component {
   state = {
     fullscreen: false,
     view: 'home'
+  }
+
+  componentDidMount() {
+    this.props.fetchState();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ links: nextProps.links });
   }
 
   setView = (view) => {
@@ -34,4 +45,21 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  const {
+      ImgurReducer: {
+          links
+      }
+   } = state;
+  return {
+     links
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      fetchState: () => dispatch(fetchState()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -46,7 +46,7 @@ class Auth extends React.Component {
                 }
                 {
                     this.state.user &&
-                    <ImgurHome />
+                    <ImgurHome user={this.state.user} />
                 }
             </div>
         )
