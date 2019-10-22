@@ -4,12 +4,20 @@ import { connect } from 'react-redux';
 import ImgurAddLink from './imgur-add-link.js';
 import ImgurShowLinks from './imgur-show-links.js';
 
-import { updateState } from './imgur-actions.js';
+import { fetchState, updateState } from './imgur-actions.js';
 
 class ImgurHome extends React.Component {
     state = {
         links: [],
 
+    }
+
+    componentDidMount() {
+        this.props.fetchState();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ links: nextProps.links });
     }
 
     addNewLink = (title) => {
@@ -20,14 +28,16 @@ class ImgurHome extends React.Component {
         }
         links = links.map(item => ({...item, id: item.id+1}));
         links.unshift(link);
-        this.setState({ links });
+        //this.setState({ links });
+        this.props.updateState(links);
     }
 
     deleteLink = (id) => {
         let { links } = this.state;
         links = links.filter(item => item.id !== id)
                 .map(item => item.id>id ? {...item, id:item.id-1} : item);
-        this.setState({ links });
+        //this.setState({ links });
+        this.props.updateState(links);
     }
 
     changeOrder = (id, direction) => {
@@ -39,7 +49,8 @@ class ImgurHome extends React.Component {
                 let temp = swapper.title;
                 swapper.title = links[i].title;
                 links[i].title = temp;
-                this.setState({ links });
+                //this.setState({ links });
+                this.props.updateState(links);
                 return;
             }
         }
@@ -60,14 +71,20 @@ class ImgurHome extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    const {
+        ImgurReducer: {
+            links
+        }
+     } = state;
     return {
-
+       links
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateState : (data) => updateState(data),
+        updateState : (data) => dispatch(updateState(data)),
+        fetchState: () => dispatch(fetchState()),
     }
 }
 
