@@ -2,13 +2,14 @@
 const defaultImgurState = {
     links: [],
     isLoadingLinks: false,
+    images: []
 }
 
 const ImgurReducer = (state = defaultImgurState, action) => {
     switch(action.type) {
-        // case 'STATE_FETCH': {
-        //     return {...state, links: action.data}
-        // }
+        case 'IMAGES_SET': {
+            return {...state, images: action.data}
+        }
         case 'STATE_UPDATE': {
             return {...state, links: action.data, isLoadingLinks: false}
         }

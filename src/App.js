@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import './App.scss';
-import { fetchState } from './components/imgur-management/imgur-actions.js';
+import { fetchImages } from './components/imgur-management/imgur-actions.js';
 
 import ImageFullscreen from './components/image-fullscreen';
 import Toolbar from './components/toolbar';
@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchState();
+    this.props.fetchImages();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -31,8 +31,26 @@ class App extends React.Component {
   }
 
   render() {
+    const {images} = this.props;
+
     return (
       <div className="App">
+        <div className="previewContainer">
+          {
+            this.state.view === 'home' &&
+            (images && images.length>0) &&
+            images.map(item => {
+              return(
+                <div className="imagePreviewContainer">
+                  <img
+                    src={item.link}
+                    className="imagePreview"
+                  />
+                </div>
+              )
+            })
+          }
+        </div>
         {
           this.state.view === 'imgur' &&
           <Auth />
@@ -48,17 +66,17 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   const {
       ImgurReducer: {
-          links
+          images
       }
    } = state;
   return {
-     links
+     images
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      fetchState: () => dispatch(fetchState()),
+      fetchImages: () => dispatch(fetchImages()),
   }
 }
 
