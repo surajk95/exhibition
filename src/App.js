@@ -3,7 +3,7 @@ import './App.scss';
 
 import ImageFullscreen from './components/image-fullscreen';
 import Toolbar from './components/toolbar';
-import ImgurHome from './components/imgur-management/imgur-home';
+import Auth from './components/auth.js';
 
 class App extends React.Component {
   state = {
@@ -24,7 +24,7 @@ class App extends React.Component {
       <div className="App">
         {
           this.state.view === 'imgur' &&
-          <ImgurHome />
+          <Auth />
         }
 
         {/* <ImageFullscreen /> */}
