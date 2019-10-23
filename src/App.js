@@ -10,7 +10,7 @@ import Auth from './components/auth.js';
 
 class App extends React.Component {
   state = {
-    fullscreen: false,
+    fullscreen: null,
     view: 'home'
   }
 
@@ -18,16 +18,16 @@ class App extends React.Component {
     this.props.fetchImages();
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ links: nextProps.links });
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({ links: nextProps.links });
+  // }
 
   setView = (view) => {
     this.setState({ view });
   }
 
-  toggleFullscreen = () => {
-    this.setState({ fullscreen: false });
+  toggleFullscreen = (link) => {
+    this.setState({ fullscreen: link });
   }
 
   render() {
@@ -45,6 +45,7 @@ class App extends React.Component {
                   <img
                     src={item.link}
                     className="imagePreview"
+                    onClick={()=>this.toggleFullscreen(item.link)}
                   />
                 </div>
               )
@@ -55,8 +56,14 @@ class App extends React.Component {
           this.state.view === 'imgur' &&
           <Auth />
         }
-
-        {/* <ImageFullscreen /> */}
+        {
+          this.state.fullscreen !== null &&
+          <ImageFullscreen
+            image={this.state.fullscreen}
+            toggleFullscreen={this.toggleFullscreen}
+          />
+        }
+        
         <Toolbar setView={this.setView} />
       </div>
     );

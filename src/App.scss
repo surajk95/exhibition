@@ -8,14 +8,22 @@
 .previewContainer {
   display: flex;
   justify-content: flex-start;
-  height: 100%;
+  height: calc(100% - 50px);
+  overflow-x: scroll;
+  overflow-y: hidden;
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+  
   .imagePreviewContainer {
     height: 100%;
-    width: 300px;
+    width: 250px;
     cursor: pointer;
     .imagePreview {
-      height: calc(100% - 100px);
-      max-width: 100%;
+      height: 100%;
+      max-width: 250px;
       object-fit: cover;
       margin-right: 10px;
       opacity: 0.4;
