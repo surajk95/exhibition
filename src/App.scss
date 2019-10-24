@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:100i,300i|Josefin+Sans:100&display=swap');
+
 .App {
   position: absolute;
   height: 100%;
@@ -20,16 +22,53 @@
   .imagePreviewContainer {
     height: 100%;
     width: 250px;
+    position: relative;
     cursor: pointer;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+    &:hover .previewBackground {
+      opacity: 0.6;
+    }
+    &:hover .descriptionContainer {
+      opacity: 1;
+    }
+    .previewBackground {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 200px;
+      background-color: black;
+      opacity: 0;
+    }
+    .descriptionContainer {
+      position: absolute;
+      bottom: 0;
+      height: 200px;
+      padding: 50px 20px;
+      box-sizing: border-box;
+      color: white;
+      text-align: left;
+      opacity: 0;
+      .itemTitle {
+        font-family: 'Alegreya Sans', sans-serif;
+        text-transform: uppercase;
+        font-size: 2rem;
+        color: white;
+        font-style: italic;
+        font-weight: 300;
+      }
+      .itemDate {
+        position: absolute;
+        bottom: 15px;
+      }
+    }
     .imagePreview {
       height: 100%;
       max-width: 250px;
       object-fit: cover;
       margin-right: 10px;
-      opacity: 0.4;
-      &:hover {
-        opacity: 1;
-      }
     }
   }
 }

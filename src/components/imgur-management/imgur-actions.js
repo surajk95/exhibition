@@ -30,8 +30,11 @@ export function fetchImages() {
     return dispatch => {
         const itemsRef = firebase.database().ref(`items/mfFNwNp9Tpbj4HgrYV1gOASI1JP2`);
         itemsRef.on('value', function(snapshot) {
-            let links = snapshot.val().map(item=>item.title);
-            links = links.map(item=>item.split('/')[3]);
+            let links = [];
+            if(snapshot.val()) {
+                links = snapshot.val().map(item=>item.title);
+                links = links.map(item=>item.split('/')[3]);
+            }
             getImages(dispatch, links);
         });
 

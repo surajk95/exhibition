@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import moment from 'moment';
 
 import './App.scss';
 import { fetchImages } from './components/imgur-management/imgur-actions.js';
@@ -18,10 +19,6 @@ class App extends React.Component {
     this.props.fetchImages();
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({ links: nextProps.links });
-  // }
-
   setView = (view) => {
     this.setState({ view });
   }
@@ -35,29 +32,40 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <div className="previewContainer">
-          {
-            this.state.view === 'home' &&
-            (images && images.length>0) &&
-            images.map(item => {
-              return(
-                <div className="imagePreviewContainer">
-                  <img
-                    src={item.link}
-                    className="imagePreview"
-                    onClick={()=>this.toggleFullscreen(item.link)}
-                  />
-                </div>
-              )
-            })
-          }
-        </div>
+        {
+          this.state.view === 'home' &&
+            <div className="previewContainer">
+              {
+                (images && images.length>0) &&
+                  images.map(item => {
+                    return(
+                      <div key={item.id} className="imagePreviewContainer" onClick={()=>this.toggleFullscreen(item.link)}>
+                        <div className="previewBackground"></div>
+                        <div className="descriptionContainer">
+                          <div className="itemTitle">
+                            {item.description}
+                          </div>
+                          <div className="itemDate">
+                            {moment.unix(item.datetime).format('D MMM, YY')}
+                          </div>
+                        </div>
+                        <img
+                          src={item.link}
+                          className="imagePreview"
+                          alt="click for fullscreen"
+                        />
+                      </div>
+                    )
+                  })
+              }
+            </div>
+        }
         {
           this.state.view === 'imgur' &&
           <Auth />
         }
         {
-          this.state.fullscreen !== null &&
+          this.state.view === 'home' && this.state.fullscreen !== null &&
           <ImageFullscreen
             image={this.state.fullscreen}
             toggleFullscreen={this.toggleFullscreen}
