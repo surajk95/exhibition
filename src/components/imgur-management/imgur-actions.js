@@ -15,6 +15,13 @@ export function fetchState() {
     }
 }
 
+export function toggleLoader(flag) {
+    return {
+        type: 'LOADER_TOGGLE',
+        data: flag
+        }
+}
+
 export function updateState(data, uid) {
     return dispatch => {
         const itemsRef = firebase.database().ref(`items/${uid}`);
@@ -28,6 +35,7 @@ export function updateState(data, uid) {
 
 export function fetchImages() {
     return dispatch => {
+        dispatch(toggleLoader(true));
         const itemsRef = firebase.database().ref(`items/mfFNwNp9Tpbj4HgrYV1gOASI1JP2`);
         itemsRef.on('value', function(snapshot) {
             let links = [];
@@ -56,6 +64,7 @@ async function getImages(dispatch, links) {
     }
     Images = Images.map(item => item.data.data);
     console.log(Images);
+    dispatch(toggleLoader(false));
     dispatch({
         type: 'IMAGES_SET',
         data: Images

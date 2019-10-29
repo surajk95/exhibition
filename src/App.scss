@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:100i,300i|Josefin+Sans:100&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:100i,100, 300i|Josefin+Sans:100&display=swap');
 
 .App {
   position: absolute;
@@ -21,7 +21,7 @@
   
   .imagePreviewContainer {
     height: 100%;
-    width: 250px;
+    width: 500px;
     position: relative;
     cursor: pointer;
     opacity: 0.5;
@@ -66,7 +66,7 @@
     }
     .imagePreview {
       height: 100%;
-      max-width: 250px;
+      max-width: 500px;
       object-fit: cover;
       margin-right: 10px;
     }

@@ -1,13 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import moment from 'moment';
+import lazySizes from 'lazysizes';
 
 import './App.scss';
+import './components/styles/loading-screen.scss';
+
 import { fetchImages } from './components/imgur-management/imgur-actions.js';
 
 import ImageFullscreen from './components/image-fullscreen';
 import Toolbar from './components/toolbar';
 import Auth from './components/auth.js';
+import LoadingScreen from './components/loading-screen.js';
 
 class App extends React.Component {
   state = {
@@ -28,8 +32,11 @@ class App extends React.Component {
   }
 
   render() {
-    const {images} = this.props;
-
+    const { images, isLoading } = this.props;
+    
+    if(isLoading) {
+      return <LoadingScreen />
+    }
     return (
       <div className="App">
         {
@@ -50,8 +57,9 @@ class App extends React.Component {
                           </div>
                         </div>
                         <img
-                          src={item.link}
-                          className="imagePreview"
+                          className="imagePreview lazyload"
+                          data-src={item.link}
+                          src="https://place-hold.it/300x900/black"
                           alt="click for fullscreen"
                         />
                       </div>
@@ -81,11 +89,13 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   const {
       ImgurReducer: {
-          images
+          images,
+          isLoading
       }
    } = state;
   return {
-     images
+     images,
+     isLoading
   }
 }
 
