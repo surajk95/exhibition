@@ -10,4 +10,7 @@
     padding: 15px 0;
     border-top: solid 1px white;
     box-sizing: border-box;
+    >div {
+        cursor: pointer;
+    }
 }

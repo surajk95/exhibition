@@ -20,7 +20,22 @@
         top: 10px;
         right: 10px;
         z-index: 13;
-        background-color: black;
         cursor: pointer;
+    }
+
+    .closeButton {
+        width: 25px;
+        height: 25px;
+    }
+
+    .fullscreenBackground {
+        z-index: 12;
+        background-color: black;
+        opacity: 0.9;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
     }
 }

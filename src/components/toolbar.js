@@ -4,12 +4,12 @@ import './styles/toolbar.scss';
 export default function Toolbar(props) {
     return (
         <div className="toolbar">
-            <button onClick={()=>props.setView('home')}>
-                Home
-            </button>
-            <button onClick={()=>props.setView('imgur')}>
-                Login
-            </button>
+            <div onClick={()=>props.setView('home')}>
+                HOME
+            </div>
+            <div onClick={()=>props.setView('imgur')}>
+                LOGIN
+            </div>
         </div>
     );
 }
