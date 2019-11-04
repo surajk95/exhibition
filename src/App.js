@@ -21,6 +21,26 @@ class App extends React.Component {
 
   componentDidMount() {
     this.props.fetchImages();
+    window.addEventListener('wheel', this.replaceVerticalScrollByHorizontal, {passive: false});
+    window.addEventListener('keydown', this.controlFullscreen);
+  }
+
+  replaceVerticalScrollByHorizontal = (event) => {
+    
+    let scrollDiv = document.getElementById("previewContainer");
+    if (event.deltaY != 0) {
+      // manually scroll horizonally instead
+      scrollDiv.scroll(scrollDiv.scrollLeft + event.deltaY * 3, scrollDiv.scrollTop);
+      event.preventDefault();
+    }
+    return;
+  }
+
+  controlFullscreen = (event) => {
+    const key = event.key;
+    if(key === 'Escape') {
+      this.setState({ fullscreen: null });
+    }
   }
 
   setView = (view) => {
@@ -29,6 +49,11 @@ class App extends React.Component {
 
   toggleFullscreen = (link) => {
     this.setState({ fullscreen: link });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('wheel', this.replaceVerticalScrollByHorizontal);
+    window.removeEventListener('keydown', this.controlFullscreen);
   }
 
   render() {
@@ -41,7 +66,7 @@ class App extends React.Component {
       <div className="App">
         {
           this.state.view === 'home' &&
-            <div className="previewContainer">
+            <div className="previewContainer" id="previewContainer">
               {
                 (images && images.length>0) &&
                   images.map(item => {
