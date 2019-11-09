@@ -7,6 +7,9 @@ export default function Toolbar(props) {
             <div onClick={()=>props.setView('home')}>
                 HOME
             </div>
+            <div onClick={()=>props.setView('info')}>
+                INFO
+            </div>
             <div onClick={()=>props.setView('imgur')}>
                 LOGIN
             </div>

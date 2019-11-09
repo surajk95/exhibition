@@ -11,6 +11,7 @@ import { fetchImages } from './components/imgur-management/imgur-actions.js';
 import ImageFullscreen from './components/image-fullscreen';
 import Toolbar from './components/toolbar';
 import Auth from './components/auth.js';
+import InfoPage from './components/info-page';
 import LoadingScreen from './components/loading-screen.js';
 
 class App extends React.Component {
@@ -30,7 +31,7 @@ class App extends React.Component {
     let scrollDiv = document.getElementById("previewContainer");
     if (event.deltaY != 0) {
       // manually scroll horizonally instead
-      scrollDiv.scroll(scrollDiv.scrollLeft + event.deltaY * 3, scrollDiv.scrollTop);
+      scrollDiv && scrollDiv.scroll(scrollDiv.scrollLeft + event.deltaY * 3, scrollDiv.scrollTop);
       event.preventDefault();
     }
     return;
@@ -96,6 +97,10 @@ class App extends React.Component {
         {
           this.state.view === 'imgur' &&
           <Auth />
+        }
+        {
+          this.state.view === 'info' &&
+          <InfoPage />
         }
         {
           this.state.view === 'home' && this.state.fullscreen !== null &&
