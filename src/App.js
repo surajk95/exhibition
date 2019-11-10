@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import moment from 'moment';
-import lazySizes from 'lazysizes';
+import 'lazysizes';
+import 'lazysizes/plugins/attrchange/ls.attrchange';
+import Placeholder from './assets/placeholder.jpg';
 
 import './App.scss';
 import './components/styles/loading-screen.scss';
@@ -85,7 +87,7 @@ class App extends React.Component {
                         <img
                           className="imagePreview lazyload"
                           data-src={item.link}
-                          src="https://place-hold.it/300x900/black"
+                          src={Placeholder}
                           alt="click for fullscreen"
                         />
                       </div>

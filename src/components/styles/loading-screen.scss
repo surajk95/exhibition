@@ -21,3 +21,12 @@
         opacity: 0.2;
     }
 }
+
+//Mobile styles
+@media (max-width: 480px) {
+    .loadingScreenContainer {
+        .loadingText {
+            font-size: 1rem;
+        }
+    }
+}

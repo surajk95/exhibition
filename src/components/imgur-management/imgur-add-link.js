@@ -16,7 +16,7 @@ class ImgurAddLink extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form className="imgurForm" onSubmit={this.handleSubmit}>
                     <input
                         type="text"
                         value={this.state.title}

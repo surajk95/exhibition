@@ -2,6 +2,10 @@ import React from 'react';
 
 import '../styles/imgur-styles.scss';
 
+import deleteIcon from '../../assets/close.png';
+import arrowUp from '../../assets/arrow-up.png';
+import arrowDown from '../../assets/arrow-down.png';
+
 class ImgurShowLinks extends React.Component {
     render() {
         const { links } = this.props;
@@ -14,20 +18,23 @@ class ImgurShowLinks extends React.Component {
                         return (
                             <div key={link.id} className="linkContainer">
                                 <a href={link.title} className="linkText" target="_blank" rel="noopener noreferrer">{link.title}</a>
-                                <button className="actionButton" onClick={()=>this.props.deleteLink(link.id)}>
-                                    Delete
-                                </button>
+                                <img
+                                    src={deleteIcon}
+                                    alt="delete"
+                                    className="actionButton" onClick={()=>this.props.deleteLink(link.id)}/>
                                 {
                                     (link.id !== 0) &&
-                                    <button className="actionButton" onClick={()=>this.props.changeOrder(link.id, 'up')}>
-                                        Up
-                                    </button>
+                                    <img
+                                        src={arrowUp}
+                                        alt="move up"
+                                        className="actionButton" onClick={()=>this.props.changeOrder(link.id, 'up')}/>
                                 }
                                 {
                                     (link.id !== links.length-1) &&
-                                    <button className="actionButton" onClick={()=>this.props.changeOrder(link.id, 'down')}>
-                                        Down
-                                    </button>
+                                    <img
+                                        src={arrowDown}
+                                        alt="move down"
+                                        className="actionButton" onClick={()=>this.props.changeOrder(link.id, 'down')}/>
                                 }
                             </div>
                         )

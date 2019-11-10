@@ -5,12 +5,13 @@
   height: 100%;
   width: 100%;
   text-align: center;
+  font-family: 'Alegreya Sans', sans-serif;
 }
 
 .previewContainer {
   display: flex;
   justify-content: flex-start;
-  height: calc(100% - 50px);
+  height: calc(100% - 70px);
   overflow-x: scroll;
   overflow-y: hidden;
   &::-webkit-scrollbar {
@@ -73,4 +74,11 @@
   }
 }
 
-
+//Mobile Styles
+@media (max-width: 480px) {
+  .imagePreviewContainer {
+    .imagePreview {
+      max-width: 70vw !important;
+    }
+  }
+}
