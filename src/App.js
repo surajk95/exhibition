@@ -81,7 +81,7 @@ class App extends React.Component {
                             {item.description}
                           </div>
                           <div className="itemDate">
-                            {moment.unix(item.datetime).format('D MMM, YY')}
+                            {moment.unix(item.datetime).format('MMMM DD, YYYY')}
                           </div>
                         </div>
                         <img

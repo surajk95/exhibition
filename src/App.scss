@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:100i,100, 300i|Josefin+Sans:100&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:100,400|Quicksand:300,400&display=swap');
 
 .App {
   position: absolute;
@@ -22,10 +22,10 @@
   
   .imagePreviewContainer {
     height: 100%;
-    width: 400px;
+    width: 260px;
     position: relative;
     cursor: pointer;
-    opacity: 0.5;
+    opacity: 0.4;
     &:hover {
       opacity: 1;
     }
@@ -34,19 +34,21 @@
     }
     &:hover .descriptionContainer {
       opacity: 1;
+      width: 100%;
     }
     .previewBackground {
       position: absolute;
       bottom: 0;
       width: 100%;
-      height: 200px;
+      height: 300px;
       background-color: black;
       opacity: 0;
     }
     .descriptionContainer {
+      z-index: 5;
       position: absolute;
       bottom: 0;
-      height: 200px;
+      height: 300px;
       padding: 50px 20px;
       box-sizing: border-box;
       color: white;
@@ -56,18 +58,22 @@
         font-family: 'Alegreya Sans', sans-serif;
         text-transform: uppercase;
         font-size: 2rem;
-        color: white;
-        font-style: italic;
-        font-weight: 300;
+        color: #BBBBBB;
+        font-weight: 400;
+        letter-spacing: 22px;
       }
       .itemDate {
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 300;
+        letter-spacing: 2px;
         position: absolute;
         bottom: 15px;
+        color: #BBBBBB;
       }
     }
     .imagePreview {
       height: 100%;
-      max-width: 400px;
+      max-width: 260px;
       object-fit: cover;
       margin-right: 10px;
     }
